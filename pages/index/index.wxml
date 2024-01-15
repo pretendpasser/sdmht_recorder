@@ -1,0 +1,55 @@
+<!--index.wxml-->
+<view class="container">
+    <view style="display: flex; justify-content: space-between; text-align: center;">
+      <text>存活单位数：{{units.length}}</text>
+      <button bindtap="resetUnitsDate">重置属性</button>
+    </view>
+  <view class="table-box" wx:for="{{units}}" wx:key="index" wx:for-index="unitIndex">
+      <view class="input-wrapper">  
+          <view wx:if="{{unitIndex == 0}}">  
+            <input type="text" class="input" bindinput="inputChange" placeholder="主神" />  
+          </view>  
+          <view wx:else>  
+            <input type="text" class="input" bindinput="inputChange" placeholder="单位{{unitIndex}}" />  
+          </view>
+      </view>  
+      <view class="text-wrapper">  
+        <text>{{inputText}}</text>  
+      </view>  
+      <view class="table">
+        <view class="tr">
+          <view class="th">生命值</view>
+          <view class="td"><button data-id="health-delete" data-index="{{unitIndex}}" bindtap="handleButtonClick" bindlongpress="handleButtonPress" class="button">-</button></view>
+          <view class="td">{{item.health}}</view>
+          <view class="td"><button data-id="health-add" data-index="{{unitIndex}}" bindtap="handleButtonClick" bindlongpress="handleButtonPress" class="button">+</button></view>
+          <view class="th">生命限</view>
+          <view class="td"><button data-id="max-health-delete" data-index="{{unitIndex}}" bindtap="handleButtonClick" bindlongpress="handleButtonPress" class="button">-</button></view>
+          <view class="td">{{item.max_health}}</view>
+          <view class="td"><button data-id="max-health-add" data-index="{{unitIndex}}" bindtap="handleButtonClick" bindlongpress="handleButtonPress" class="button">+</button></view>
+        </view>
+        <view class="tr">
+          <view class="th">攻击力</view>
+          <view class="td"><button data-id="attack-delete" data-index="{{unitIndex}}" bindtap="handleButtonClick" bindlongpress="handleButtonPress" class="button">-</button></view>
+          <view class="td">{{item.attack}}</view>
+          <view class="td"><button data-id="attack-add" data-index="{{unitIndex}}" bindtap="handleButtonClick" bindlongpress="handleButtonPress" class="button">+</button></view>
+          <view class="th">护盾值</view>
+          <view class="td"><button data-id="defend-delete" data-index="{{unitIndex}}" bindtap="handleButtonClick" bindlongpress="handleButtonPress" class="button">-</button></view>
+          <view class="td">{{item.defend}}</view>
+          <view class="td"><button data-id="defend-add" data-index="{{unitIndex}}" bindtap="handleButtonClick" bindlongpress="handleButtonPress" class="button">+</button></view>
+        </view>
+        <view class="tr" >
+          <view class="th">移动力</view>
+          <view class="td"><button data-id="move-delete" data-index="{{unitIndex}}" bindtap="handleButtonClick" bindlongpress="handleButtonPress" class="button">-</button></view>
+          <view class="td">{{item.move}}</view>
+          <view class="td"><button data-id="move-add" data-index="{{unitIndex}}" bindtap="handleButtonClick" bindlongpress="handleButtonPress" class="button">+</button></view>
+          <view class="th">移动限</view>
+          <view class="td"><button data-id="max-move-delete" data-index="{{unitIndex}}" bindtap="handleButtonClick" bindlongpress="handleButtonPress" class="button">-</button></view>
+          <view class="td">{{item.max_move}}</view>
+          <view class="td"><button data-id="max-move-add" data-index="{{unitIndex}}" bindtap="handleButtonClick" bindlongpress="handleButtonPress" class="button">+</button></view>
+        </view>
+      </view>
+  </view>
+
+  <button bindtap="addTable">新单位</button>  
+
+</view>

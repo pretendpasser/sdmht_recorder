@@ -1,0 +1,80 @@
+/**index.wxss**/
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #aaa;
+}
+
+.userinfo-avatar {
+  overflow: hidden;
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+
+.table-box, .table {
+  display: flex;
+  flex-direction: column;     /* 排列形式: 向下 */
+  width:100%;
+  margin-top: 0px;
+  margin-left: 2px;
+  margin-bottom: 10px;
+  text-align: left;
+}
+.tr {
+  display: flex;
+  flex-direction: row;
+}
+.th, .td {  /* 公有的属性 */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;            /* 自动换行 */
+  height: 30px;
+  text-align: center;         /* 文本居中 */
+  justify-content:center;     /* 主轴居中 */
+  align-items: center;        /* 交叉轴居中 */
+  border-top: 1px solid #dadada;      /* 单元格上线框 */
+  border-bottom: 1px solid #dadada;   /* 单元格下线框 */
+  border-left: 1px solid #dadada;     /* 单元格左线框 */
+  border-right: 1px solid #dadada;    /* 单元格右线框 */
+}
+.th {
+  font-weight: 800;           /* 字体加重 */
+  width: 50px;
+  background-color:#B3CCF4;   /* 背景色 */
+}
+.td {
+  background-color:#edf3e9;   /* 背景色 */
+  width: 10%;
+}
+.button {
+  width: 5%;
+  height: 80%;
+  padding: 1% 1%;  /* 内边距 */
+  background-color: #4CAF50; /* 背景颜色 */
+  border: none; /* 无边框 */
+  color: white; /* 文字颜色 */
+  text-align: center; /* 文字居中 */
+  text-decoration: none; /* 无下划线 */
+  display: inline-block; /* 显示为行内块元素 */
+  font-size: 16px; /* 字体大小 */
+  margin: 0px 0px; /* 外边距 */
+  border-radius: 5px; /* 圆角 */
+}
+
+.input-wrapper {  
+  display: flex;  
+  align-items: center;  
+  padding: 0px 5px;  
+}  
+.input {  
+  flex: 1;  
+  height: 5px;  
+  border: 1px solid #ccc;  
+  outline: none;  
+}  
+.text-wrapper {  
+  padding: 0px 0px 0px 0px;  
+}
