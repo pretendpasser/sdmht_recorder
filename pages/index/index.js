@@ -30,12 +30,8 @@ Page({
         max_move: 1,
       },
     ],
-    motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    canIUseGetUserProfile: false,
-    canIUseOpenData: wx.canIUse('open-data.type.userAvatarUrl') && wx.canIUse('open-data.type.userNickName') // 如需尝试获取用户信息可改为false
   },
   // 事件处理函数
   bindViewTap() {
@@ -45,17 +41,12 @@ Page({
   },
 
   onLoad() {
-    if (wx.getUserProfile) {
-      this.setData({
-        canIUseGetUserProfile: true
-      })
-    }
   },
 
   resetUnitsDate: function() {
     wx.showModal({  
       title: '确认',  
-      content: '你确定要执行该操作吗？',  
+      content: '确定要重置为初始值吗？',  
       success: (res) => {  
         if (res.confirm) {  
           const units = [
@@ -72,7 +63,7 @@ Page({
     });
   },
 
-  addTable: function() {  
+  addUnit: function() {  
     const newUnit = {
       health: 0,
       max_health: 0,
@@ -81,9 +72,27 @@ Page({
       move: 0,
       max_move: 0,
     }; // 新生成的表格数据  
-    const units = this.data.units;  
+    const units = this.data.units;
     units.push(newUnit); // 将新表格添加到表格数组中  
     this.setData({ units }); // 更新数据，以触发界面更新  
+  },
+
+  deleteUnit: function(event) {
+    var dataIndex = event.currentTarget.dataset.index; 
+    wx.showModal({  
+      title: '确认',  
+      content: '确定要删除该单位吗？',  
+      success: (res) => {  
+        if (res.confirm) {  
+          const units = this.data.units;
+          delete this.data.units[dataIndex];
+          this.setData({ units:units.filter(item => item !== null)  });
+        } else if (res.cancel) {  
+          // 用户点击了取消按钮，不执行任何操作  
+          console.log('用户点击了取消按钮');  
+        }
+      }
+    });
   },
   
   // 处理按钮点击事件
@@ -204,5 +213,5 @@ Page({
       }, 500); // 设置长按结束的时长，可以根据需要调整  
     },  
 
-})
 
+})

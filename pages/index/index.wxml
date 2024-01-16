@@ -1,20 +1,20 @@
 <!--index.wxml-->
 <view class="container">
-    <view style="display: flex; justify-content: space-between; text-align: center;">
-      <text>存活单位数：{{units.length}}</text>
-      <button bindtap="resetUnitsDate">重置属性</button>
+    <view class="headLine">
+      <text class="text">存活单位数：{{units.length}}</text>
+      <button class="lineButton" bindtap="resetUnitsDate">重置属性</button>
     </view>
-  <view class="table-box" wx:for="{{units}}" wx:key="index" wx:for-index="unitIndex">
-      <view class="input-wrapper">  
-          <view wx:if="{{unitIndex == 0}}">  
-            <input type="text" class="input" bindinput="inputChange" placeholder="主神" />  
-          </view>  
-          <view wx:else>  
-            <input type="text" class="input" bindinput="inputChange" placeholder="单位{{unitIndex}}" />  
+  <view wx:if="{{item !== null}}" class="table-box" wx:for="{{units}}" wx:key="index" wx:for-index="unitIndex">
+      <view class="headLine" >  
+          <view class="input-wrapper">  
+              <view wx:if="{{unitIndex == 0}}">  
+                <input type="text" class="input" bindinput="inputChange" placeholder="主神" />  
+              </view>  
+              <view wx:else>  
+                <input type="text" class="input" bindinput="inputChange" placeholder="单位{{unitIndex}}" />  
+              </view>
           </view>
-      </view>  
-      <view class="text-wrapper">  
-        <text>{{inputText}}</text>  
+          <button  wx:if="{{unitIndex !== 0}}" class="lineButton" bindtap="deleteUnit" data-index="{{unitIndex}}">删除</button>
       </view>  
       <view class="table">
         <view class="tr">
@@ -50,6 +50,6 @@
       </view>
   </view>
 
-  <button bindtap="addTable">新单位</button>  
+  <button bindtap="addUnit">新单位</button>  
 
 </view>
