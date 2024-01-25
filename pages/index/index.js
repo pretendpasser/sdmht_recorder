@@ -6,28 +6,37 @@ Page({
   data: {
     units: [
       {
+        index: 0,
+        hiddenClass: '',
+        name: '主神',
         health: 50,
         max_health: 50,
-        attack: 3,
         defend: 0,
-        move: 1,
-        max_move: 1,
+        max_defend: 15,
+        attack: 3,
+        move: 2,
       },
       {
+        index: 1,
+        hiddenClass: '',
+        name: '单位',
         health: 50,
         max_health: 50,
-        attack: 3,
         defend: 0,
+        max_defend: 15,
+        attack: 3,
         move: 1,
-        max_move: 1,
       },
       {
+        index: 2,
+        hiddenClass: '',
+        name: '单位',
         health: 50,
         max_health: 50,
-        attack: 3,
         defend: 0,
+        max_defend: 15,
+        attack: 3,
         move: 1,
-        max_move: 1,
       },
     ],
     userInfo: {},
@@ -50,9 +59,9 @@ Page({
       success: (res) => {  
         if (res.confirm) {  
           const units = [
-            {health: 50,max_health: 50,attack: 3,defend: 0,move: 1,max_move: 1,},
-            {health: 50,max_health: 50,attack: 3,defend: 0,move: 1,max_move: 1,},
-            {health: 50,max_health: 50,attack: 3,defend: 0,move: 1,max_move: 1,},
+            {name:'主神',index:0,hiddenClass:'',health:50,max_health:50,attack:3,defend:0,move:2,max_defend:15,},
+            {name:'单位',index:1,hiddenClass:'',health:50,max_health:50,attack:3,defend:0,move:1,max_defend:15,},
+            {name:'单位',index:2,hiddenClass:'',health:50,max_health:50,attack:3,defend:0,move:1,max_defend:15,},
           ];
           this.setData({ units:units });
         } else if (res.cancel) {  
@@ -65,12 +74,15 @@ Page({
 
   addUnit: function() {  
     const newUnit = {
+      index: this.data.units.length,
+      name: "单位",
+      hiddenClass:'',
       health: 0,
       max_health: 0,
-      attack: 0,
       defend: 0,
+      max_defend: 0,
+      attack: 0,
       move: 0,
-      max_move: 0,
     }; // 新生成的表格数据  
     const units = this.data.units;
     units.push(newUnit); // 将新表格添加到表格数组中  
@@ -78,7 +90,7 @@ Page({
   },
 
   deleteUnit: function(event) {
-    var dataIndex = event.currentTarget.dataset.index; 
+    var dataIndex = event.currentTarget.dataset.index;
     wx.showModal({  
       title: '确认',  
       content: '确定要删除该单位吗？',  
@@ -92,6 +104,20 @@ Page({
           console.log('用户点击了取消按钮');  
         }
       }
+    });
+  },
+
+  hiddenInfo: function(event) {
+    var dataIndex = event.currentTarget.dataset.index; 
+    this.setData({  
+      ['units['+dataIndex+'].hiddenClass']: this.data.units[dataIndex].hiddenClass === 'hidden' ? '' : 'hidden' // 切换遮挡状态  
+    });  
+  },
+
+  inputUnitName: function(event) {
+    var dataIndex = event.currentTarget.dataset.index;
+    this.setData({
+      ['units['+dataIndex+'].name']: this.data.units[dataIndex].name,
     });
   },
   
@@ -140,13 +166,13 @@ Page({
       this.setData({
         ['units['+dataIndex+'].move']: this.data.units[dataIndex].move + 1,
       });
-    } else if (buttonId === 'max-move-delete') {
+    } else if (buttonId === 'max-defend-delete') {
       this.setData({
-        ['units['+dataIndex+'].max_move']: this.data.units[dataIndex].max_move - 1,
+        ['units['+dataIndex+'].max_defend']: this.data.units[dataIndex].max_defend - 1,
       });
-    } else if (buttonId === 'max-move-add') {
+    } else if (buttonId === 'max-defend-add') {
       this.setData({
-        ['units['+dataIndex+'].max_move']: this.data.units[dataIndex].max_move + 1,
+        ['units['+dataIndex+'].max_defend']: this.data.units[dataIndex].max_defend + 1,
       });
     }
   },
@@ -196,13 +222,13 @@ Page({
         that.setData({
           ['units['+dataIndex+'].move']: that.data.units[dataIndex].move + 1,
         });
-      } else if (buttonId === 'max-move-delete') {
+      } else if (buttonId === 'max-defend-delete') {
         that.setData({
-          ['units['+dataIndex+'].max_move']: that.data.units[dataIndex].max_move - 1,
+          ['units['+dataIndex+'].max_defend']: that.data.units[dataIndex].max_defend - 1,
         });
-      } else if (buttonId === 'max-move-add') {
+      } else if (buttonId === 'max-defend-add') {
         that.setData({
-          ['units['+dataIndex+'].max_move']: that.data.units[dataIndex].max_move + 1,
+          ['units['+dataIndex+'].max_defend']: that.data.units[dataIndex].max_defend + 1,
         });
       }
     }, 50); // 设置间隔时间，可以根据需要调整  
